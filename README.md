@@ -1,4 +1,5 @@
 # Cyclistic-Case-Study
+
 A Google Data Analytics Capstone Project
 
 INTRODUCTION
@@ -11,11 +12,9 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
 
 In order to do that, the team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends.
 
-
 SCENARIO
 
 You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
-
 
 EXCUTIVE SUMMARY
 
@@ -30,8 +29,7 @@ Our study is aimed at providing data-driven insights to tailor strategies that r
 
 Our hope is that our work will play a vital role in shaping Cyclistic's future marketing strategies and contribute to its mission of inclusive, accessible, and profitable bike-sharing
 
-
-ASK
+**ASK**
 
 STATEMENT OF THE PROBLEM
 
@@ -39,28 +37,23 @@ To understand the differences in the usage patterns between casual riders and me
 
 The analysis will try to answer the following key questions:
 
-•	How do annual members and casual riders use Cyclistic bikes differently?
-•	What are the patterns or behaviors unique to casual riders that could potentially be addressed by a targeted marketing campaign?
-•	What are the trends over time for these two user groups? Are there seasonal patterns that could inform the timing of the marketing campaign?
-
+• How do annual members and casual riders use Cyclistic bikes differently?
+• What are the patterns or behaviors unique to casual riders that could potentially be addressed by a targeted marketing campaign?
+• What are the trends over time for these two user groups? Are there seasonal patterns that could inform the timing of the marketing campaign?
 
 BUSINESS TASK
 
 To analyze Cyclistic's historical bike trip data and understand how casual riders and annual members use Cyclistic bikes differently and use these insights to design a new marketing strategy aimed at converting casual riders into annual members.
 
-
 KEY SATEKEHOLDERS
 
-•	Lily Moreno: The director of marketing who is responsible for developing campaigns and initiatives to promote the bike-sharing program.
-•	Cyclistic Marketing Analytics Team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
-•	Cyclistic's Executive Team: The notoriously detail-oriented executive team who will decide whether to approve the recommended marketing program.
-
+• Lily Moreno: The director of marketing who is responsible for developing campaigns and initiatives to promote the bike-sharing program.
+• Cyclistic Marketing Analytics Team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
+• Cyclistic's Executive Team: The notoriously detail-oriented executive team who will decide whether to approve the recommended marketing program.
 
 ASSUMPTIONS
 
 We are working under the assumption that the provided data is accurate, up-to-date, and representative of the larger rider population. We also assume that the riders' behaviors are largely influenced by their status as casual riders or annual members, not by other unrecorded factors.
-
-
 
 PREPARE
 
@@ -68,45 +61,36 @@ DATA CONTEXT
 
 Our data, sourced from Cyclistic's historical trip records, covers a three-month worth of ride information, providing insights into the usage patterns of both casual riders and annual members. The key variables in our dataset include the start and end times of each trip, start and end station details, rideable type, and whether the rider is a casual user or an annual member.
 
-
 DATA LOCATION AND ORGANIZATION
 
 The data used for this case study has been made available by Motivate International Inc. It represents the historical trip data of Cyclistic bikes. It is a public data that is available for download and use to explore how different customer types are using Cyclistic bikes. The data is in a structured format like a CSV file, with each row representing a bike trip and columns indicating bike type, start time, end time, start station, end station, and user type.
-
 
 DATA CREDIBILITY AND BIAS
 
 The data seems to be auto-generated from the infrastructure of the company that operates the bike-sharing service and hence reliable. However, we must take note that the data could contain biases based on operational constraints or data collection methods. For example, the data only includes people who have chosen to use the Cyclistic service and might not represent the entire population of bike riders in Chicago.
 
-
 LICENSING, PRIVACY, SECURITY, AND ACCESSIBILITY
 
 The data has been provided under a data license agreement, which permits its use for analysis but prohibits sharing the data as a standalone dataset. Privacy is preserved as no personally identifiable information is included in the data. Security will involve storing the downloaded data in a secure location, perhaps encrypted if needed. Accessibility refers to ensuring that the data and the subsequent analysis are available to all stakeholders involved in the project.
-
 
 DATA INTEGRITY
 
 The integrity of the date will be verified by performing exploratory data analysis (EDA) to identify any inconsistencies, missing values, outliers, or duplicate entries.
 
-
 RELEVANCE TO THE BUSINESS TASK
 
 The data contains information on bike trips by both casual riders and annual members, which is directly relevant to the business question of understanding how the two types of users utilize the Cyclistic bikes differently. By analyzing patterns and trends in the data, you can extract insights to inform a marketing strategy aimed at converting casual riders into annual members.
-
 
 POTENTIAL PROBLEMS
 
 Potential problems could include missing data, errors in the data, or bias in the data. The data might also lack certain information that could be useful for the analysis, such as demographic details of riders or specific reasons for choosing a casual ride vs. membership.
 
-
 KEY TASKS:
 
-•	Download data and store it appropriately.
+• Download data and store it appropriately.
 
-•	Identify how it’s organized.
+• Identify how it’s organized.
 
-•	Sort and filter the data.
+• Sort and filter the data.
 
-•	Determine the credibility of the data.
-
-
+• Determine the credibility of the data.
