@@ -2,6 +2,8 @@
 
 ### A Google Data Analytics Capstone Project
 
+<br/>
+
 **INTRODUCTION**
 
 Cyclistic is a bikeshare company in Chicago. In 2016, it launched a successful bikeshare offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geo-tracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime.
@@ -27,7 +29,9 @@ annual members.
 
 Our study is aimed at providing data-driven insights to tailor strategies that resonate with casual riders, addressing their needs and preferences, and ultimately, encouraging them to become annual members. We believe that understanding these riders' behavior could be instrumental in crafting an effective marketing strategy.
 
-Our hope is that our work will play a vital role in shaping Cyclistic's future marketing strategies and contribute to its mission of inclusive, accessible, and profitable bike-sharing
+Our hope is that our work will play a vital role in shaping Cyclistic's future marketing strategies and contribute to its mission of inclusive, accessible, and profitable bike-sharing.
+
+<br/>
 
 ### ASK
 
@@ -37,9 +41,9 @@ To understand the differences in the usage patterns between casual riders and me
 
 The analysis will try to answer the following key questions:
 
-• How do annual members and casual riders use Cyclistic bikes differently?
-• What are the patterns or behaviors unique to casual riders that could potentially be addressed by a targeted marketing campaign?
-• What are the trends over time for these two user groups? Are there seasonal patterns that could inform the timing of the marketing campaign?
+- How do annual members and casual riders use Cyclistic bikes differently?
+- What are the patterns or behaviors unique to casual riders that could potentially be addressed by a targeted marketing campaign?
+- What are the trends over time for these two user groups? Are there seasonal patterns that could inform the timing of the marketing campaign?
 
 **BUSINESS TASK**
 
@@ -47,13 +51,15 @@ To analyze Cyclistic's historical bike trip data and understand how casual rider
 
 **KEY SATEKEHOLDERS**
 
-• Lily Moreno: The director of marketing who is responsible for developing campaigns and initiatives to promote the bike-sharing program.
-• Cyclistic Marketing Analytics Team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
-• Cyclistic's Executive Team: The notoriously detail-oriented executive team who will decide whether to approve the recommended marketing program.
+- Lily Moreno: The director of marketing who is responsible for developing campaigns and initiatives to promote the bike-sharing program.
+- Cyclistic Marketing Analytics Team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
+- Cyclistic's Executive Team: The notoriously detail-oriented executive team who will decide whether to approve the recommended marketing program.  
 
 **ASSUMPTIONS**
 
 We are working under the assumption that the provided data is accurate, up-to-date, and representative of the larger rider population. We also assume that the riders' behaviors are largely influenced by their status as casual riders or annual members, not by other unrecorded factors.
+
+<br/>
 
 ### PREPARE
 
@@ -87,14 +93,12 @@ Potential problems could include missing data, errors in the data, or bias in th
 
 **KEY TASKS:**
 
-• Download data and store it appropriately.
+- Download data and store it appropriately.
+- Identify how it’s organized.
+- Sort and filter the data.
+- Determine the credibility of the data.  
 
-• Identify how it’s organized.
-
-• Sort and filter the data.
-
-• Determine the credibility of the data.
-
+<br/>
 
 ```SQL
 --combining the monthly tables to one quarter table
@@ -108,18 +112,18 @@ CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
   );
 ```
 
+<br/>
 
 **PROCESS**
 
 **KEY TASKS:**
 
-•	Check the data for errors.
+- Check the data for errors.
+- Choose your tools.
+- Transform the data so you can work with it effectively.
+- Document the cleaning process.  
 
-•	Choose your tools.
-
-•	Transform the data so you can work with it effectively.
-
-•	Document the cleaning process.
+<br/>
 
 ```SQL
 --Checking the data of missing or NULL values
@@ -146,15 +150,200 @@ UNPIVOT (null_count FOR col_name IN (ride_id, rideable_type, started_at, ended_a
   start_lat, start_lng, end_lat, end_lng, member_casual))
 ```
 
+<br/>
+
+<img width="621" alt="Missing_Values" src="https://github.com/user-attachments/assets/17e38f4c-85a2-4d52-b743-3901d2ef8242">
 
 
-Result:
+<br/> 
 
-
+--
 
 COMMENTS ON CLEANING THE DATA:
 
 As revealed, the missing values are in the columns; start_station_name, start_station_id, end_station_name, end_station_id, end_lat, and end_lng. These missing data may refer to the location of the riders and the distance of the rides. To recall, our task is to analyze “and understand how casual riders and annual members use Cyclistic bikes differently and use these insights to design a new marketing strategy aimed at converting casual riders into annual members”. We can proceed with cleaning the data but doing so may exclude some info on the behavioral patterns of the riders, approximately 14.5% of the data will be lost. Since our analysis will focus on the behavioral patterns of the riders such as, the classification of the riders whether members or casual riders, the length of the rides, peak days, and rideable type, we can probably forego cleaning the data of missing (NA) values and leave the dataset intact. Cleaning the data of NA values is only deemed necessary in this case if we will include in our analysis the demography of the riders and the distance of the rides.
 
+<br/>
+
+```SQL
+--Adding the ride_length and day_of_week columns
+
+CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master AS
+SELECT *, TIMESTAMP_DIFF(ended_at, started_at, SECOND) AS ride_length_sec, TIMESTAMP_DIFF(ended_at, started_at, SECOND)/60 AS ride_length_min, FORMAT_TIMESTAMP('%a', TIMESTAMP(started_at)) AS day_of_week, EXTRACT(DAYOFWEEK FROM TIMESTAMP(started_at)) AS day_of_week_num 
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1
+
+--This query creates a table with four additional columns, namely: 
+--ride_length_sec, ride_length_min, day_of_week, and day_of_week_num
+```
+
+<br/>
+
+After converting and inspecting data, it was noticed that the column ride_length has some negative values, probably because start_time and end_time were swapped for these rides, or the system simply registered and recorded the rides incorrectly. So, rides with negative ride_length values must be excluded.
+
+<br/>
+
+```SQL
+--Removing bad data (Big Query subscription account)
+
+DELETE FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master
+WHERE ride_length_min < 0
+
+--This query removes the rows from the divvy_trips_2023_q1_master table
+```
+
+<br/>
+
+```SQL
+--Removing bad data (Big Query Sandbox account)
+
+CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean AS
+SELECT *
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master
+WHERE ride_length_min >= 0
+
+--This query creates a new table divvy_trips_2023_q1_master_clean that excludes the rows with negative values. 
+```
+
+<br/>
+
+**ANALYZE**
+
+KEY TASKS:
+
+- Conduct descriptive analysis.
+- Identify trends and relationships.
+
+<br/>
+
+```SQL
+--Proportion of Rider Type
+
+SELECT member_casual AS rider_type, COUNT(*) AS num_riders, 
+  ((COUNT(*) / SUM(COUNT(*)) OVER ())*100) AS proportion
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY member_casual
+```
+
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/fb532acb-cba6-4268-a4f0-dc295be6a3d3">
+
+<br/>
+
+
+```SQL
+--Mean, Max, Min of ride_length
+
+SELECT member_casual, ROUND(AVG(ride_length_min), 4) AS avg_ride_length,
+  ROUND(MAX(ride_length_min), 4) AS max_ride_length,
+  ROUND(MIN(ride_length_min), 4) AS min_ride_length
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY member_casual
+```
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/9e813b65-d951-4cbd-998b-1a8743f129f7">
+
+<br/>
+
+
+```SQL
+--Count of rides per day of week
+
+SELECT day_of_week, COUNT(ride_id) AS number_of_rides
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY day_of_week, day_of_week_num
+ORDER BY day_of_week_num
+```
+
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/db863aa4-49b4-40f0-822e-798cb291eee2">
+
+<br/>
+
+
+```SQL
+--Average ride_length per day_of_week
+
+SELECT day_of_week, ROUND(AVG(ride_length_min), 4) AS avg_ride_length
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY day_of_week, day_of_week_num
+ORDER BY day_of_week_num
+```
+
+<br/> 
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/9f46603f-57b3-41f4-b71e-6106f78434f9">
+
+<br/>
+
+
+```SQL
+--Count of rides by per day of week by rider_type
+
+SELECT member_casual, day_of_week, COUNT(ride_id) AS number_of_rides
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY member_casual, day_of_week, day_of_week_num
+ORDER BY member_casual, day_of_week_num
+```
+
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/c3905de5-4753-40a3-96fc-a14531d10ca2">
+
+<br/>
+
+
+```SQL
+--Average ride_length per day of week by rider_type
+
+SELECT member_casual, day_of_week, ROUND(AVG(ride_length_min), 4) AS avg_ride_length
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY member_casual, day_of_week, day_of_week_num
+ORDER BY member_casual, day_of_week_num
+```
+
+<br/>
+ 
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/ae0fe085-b2eb-4570-aef6-6f9bec646c39">
+
+<br/>
+
+
+```SQL
+--Proportion of Bike Type
+
+SELECT rideable_type, COUNT(*) AS num_rides, 
+  ROUND(((COUNT(*) / SUM(COUNT(*)) OVER ())*100), 2) AS proportion
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY rideable_type
+ORDER BY proportion DESC
+```
+
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/e503bca4-b185-4d6b-931d-f3a425043e96">
+
+<br/>
+
+
+```SQL
+--Bike Usage Preference By Rider Type
+
+SELECT member_casual, rideable_type, COUNT(*) AS num_rides
+FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
+GROUP BY rideable_type, member_casual
+ORDER BY member_casual 
+```
+
+<br/>
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/56f7c1a3-8918-45e8-9648-785aeb331137">
+
+<br/>
+
+
+**SHARE**
 
 
