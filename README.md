@@ -147,3 +147,14 @@ UNPIVOT (null_count FOR col_name IN (ride_id, rideable_type, started_at, ended_a
   start_lat, start_lng, end_lat, end_lng, member_casual))
 ```
 
+
+Result:
+
+
+
+COMMENTS ON CLEANING THE DATA:
+
+As revealed, the missing values are in the columns; start_station_name, start_station_id, end_station_name, end_station_id, end_lat, and end_lng. These missing data may refer to the location of the riders and the distance of the rides. To recall, our task is to analyze “and understand how casual riders and annual members use Cyclistic bikes differently and use these insights to design a new marketing strategy aimed at converting casual riders into annual members”. We can proceed with cleaning the data but doing so may exclude some info on the behavioral patterns of the riders, approximately 14.5% of the data will be lost. Since our analysis will focus on the behavioral patterns of the riders such as, the classification of the riders whether members or casual riders, the length of the rides, peak days, and rideable type, we can probably forego cleaning the data of missing (NA) values and leave the dataset intact. Cleaning the data of NA values is only deemed necessary in this case if we will include in our analysis the demography of the riders and the distance of the rides.
+
+
+
