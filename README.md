@@ -102,6 +102,11 @@ Potential problems could include missing data, errors in the data, or bias in th
 KEY TASKS:
 
 •	Download data and store it appropriately.
+
 •	Identify how it’s organized.
+
 •	Sort and filter the data.
+
 •	Determine the credibility of the data.
+
+
