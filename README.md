@@ -114,7 +114,7 @@ CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
 
 <br/>
 
-**PROCESS**
+### PROCESS
 
 **KEY TASKS:**
 
@@ -154,10 +154,8 @@ UNPIVOT (null_count FOR col_name IN (ride_id, rideable_type, started_at, ended_a
 
 <img width="621" alt="Missing_Values" src="https://github.com/user-attachments/assets/17e38f4c-85a2-4d52-b743-3901d2ef8242">
 
-
 <br/> 
-
---
+<br/>
 
 COMMENTS ON CLEANING THE DATA:
 
@@ -206,9 +204,9 @@ WHERE ride_length_min >= 0
 
 <br/>
 
-**ANALYZE**
+### ANALYZE
 
-KEY TASKS:
+**KEY TASKS:**
 
 - Conduct descriptive analysis.
 - Identify trends and relationships.
@@ -229,7 +227,7 @@ GROUP BY member_casual
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/fb532acb-cba6-4268-a4f0-dc295be6a3d3">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Mean, Max, Min of ride_length
@@ -240,12 +238,13 @@ SELECT member_casual, ROUND(AVG(ride_length_min), 4) AS avg_ride_length,
 FROM fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1_master_clean
 GROUP BY member_casual
 ```
+
 <br/>
 
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/9e813b65-d951-4cbd-998b-1a8743f129f7">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Count of rides per day of week
@@ -261,7 +260,7 @@ ORDER BY day_of_week_num
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/db863aa4-49b4-40f0-822e-798cb291eee2">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Average ride_length per day_of_week
@@ -277,7 +276,7 @@ ORDER BY day_of_week_num
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/9f46603f-57b3-41f4-b71e-6106f78434f9">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Count of rides by per day of week by rider_type
@@ -293,7 +292,7 @@ ORDER BY member_casual, day_of_week_num
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/c3905de5-4753-40a3-96fc-a14531d10ca2">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Average ride_length per day of week by rider_type
@@ -309,7 +308,7 @@ ORDER BY member_casual, day_of_week_num
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/ae0fe085-b2eb-4570-aef6-6f9bec646c39">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Proportion of Bike Type
@@ -326,7 +325,7 @@ ORDER BY proportion DESC
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/e503bca4-b185-4d6b-931d-f3a425043e96">
 
 <br/>
-
+<br/>
 
 ```SQL
 --Bike Usage Preference By Rider Type
@@ -342,8 +341,85 @@ ORDER BY member_casual
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/56f7c1a3-8918-45e8-9648-785aeb331137">
 
 <br/>
+<br/>
+
+### SHARE
+
+**Proportion of Rider Type**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/a8bfbefc-0139-4a83-aae1-22e562641ba3">
+
+The chart indicates that more than half of all riders are member riders.
+
+<br/>
+
+**Number of Rides Per Day of Week**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/80c316d2-8ab5-46e2-9d9c-754ca2ba8e21">
+
+The chart shows that most rides were started on Tuesday (113,112), Wednesday (107,569) followed by Thursday (95,546).
+
+<br/>
+
+**Average Ride Length per Day of Week**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/0bc2621f-5ebd-4dee-9fec-dae149c33100">
+
+The chart shows that riders rent bikes for longer duration during weekends.
+
+<br/>
+
+**Number of Rides per Day of Week By Rider Type**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/a40c6a6b-f060-4f42-8e38-c4f1e2a5f3e5">
+
+The chart shows that member riders have higher number of rides compared to casual riders on any day of the week, and they use the bikes more often on weekdays probably during workdays.
+
+<br/>
+
+**Average Ride Length per Day of Week By Rider Type**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/37b22869-9b00-43c1-8e67-bb9e71ea3918">
+
+In contrast, casual riders take longer rides than member riders. The chart demonstrates that casual riders rent bikes for longer durations, especially on Saturday and Sunday probably for leisure. Members show a steady riding behavior, while they also tend to ride a little longer on weekends.
+
+<br/>
+
+**Proportion of Bike Type**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/d2b2819b-d251-446a-9ce7-b028e17d5a1b">
+
+The plot shows that more than half of the bikes used are electric bikes.
+
+<br/>
+
+**Bike  Usage Preference By Rider Type**
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/43fdd52f-5a0a-4bfe-b26f-3aabc5d10813">
+
+The charts show that no members are using the docked bike.  It's only popular to casual riders, but still the least popular among the three bike types.
+
+<br/>
 
 
-**SHARE**
+### ACT
+
+**FINDINGS**
+
+1.	Members use the bikes more often during weekdays while casual riders use the bikes more often during weekends, an indication that members use the bikes to commute for work or school while casual riders use them for leisure.
+2.	Average ride times are longer during weekends, influenced by the riding behavior of the casual riders who take longer rides during weekends. Member riders, however, show a relatively steady ride length pattern throughout the week.
+3.	Members take relatively shorter rides compared to casual riders. Average ride length for member riders  is 10.50 mins with a maximum ride length of 1560 mins, while the average ride length for casual riders is 22.35 mins with a maximum ride length of 33,604 mins.
+4.	The docked bikes are the least popular among the types of bikes available and none of the member riders use them, only casual riders.
+
+<br/>
+
+**RECOMMENDATION**
+
+1.	Create a membership package to categorize riders into three groups: Leisure Riders – people who use the bikes for leisure activities, Student – people who use the bikes for school, and Business Riders – people who use the bikes for work.
+2.	Since casual riders take longer rides, create a reward system to convert casual riders to members using their minutes or kilometers earned.
+3.	As casual riders’ usage rate is high during weekends, create a marketing campaign that include a weekend only membership.
+4.	Organize member-exclusive events such as group rides, urban exploration challenges, or themed cycling events. This approach not only encourages more rides from current members but also entices casual riders to join as members to participate in these unique experiences.
+5.	Launch seasonal campaigns by offering limited-time discounts, special weekday offers, or extended ride durations for members, to help in making the service more sustainable and manageable.
+6.	Utilize social media platforms to engage with both casual riders and potential members. Share success stories and testimonials from Cyclistic members who have benefited from the membership. Create visually appealing content showcasing the joy of cycling during different seasons and scenarios, enticing casual riders to become members.
 
 
