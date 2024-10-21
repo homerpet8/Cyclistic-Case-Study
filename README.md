@@ -96,7 +96,7 @@ Potential problems could include missing data, errors in the data, or bias in th
 • Determine the credibility of the data.
 
 
-```
+```SQL
 --combining the monthly tables to one quarter table
 
 CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
@@ -121,8 +121,7 @@ CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
 
 •	Document the cleaning process.
 
-
-```
+```SQL
 --Checking the data of missing or NULL values
 
 SELECT col_name, null_count 
@@ -146,6 +145,7 @@ UNPIVOT (null_count FOR col_name IN (ride_id, rideable_type, started_at, ended_a
   start_station_name, start_station_id, end_station_name, end_station_id, 
   start_lat, start_lng, end_lat, end_lng, member_casual))
 ```
+
 
 
 Result:
