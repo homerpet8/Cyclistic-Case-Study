@@ -55,7 +55,7 @@ ASSUMPTIONS
 
 We are working under the assumption that the provided data is accurate, up-to-date, and representative of the larger rider population. We also assume that the riders' behaviors are largely influenced by their status as casual riders or annual members, not by other unrecorded factors.
 
-PREPARE
+***PREPARE***
 
 DATA CONTEXT
 
