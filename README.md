@@ -348,6 +348,14 @@ ORDER BY member_casual
 
 ### SHARE
 
+For additional insights, please check my [Tableau Public Dashboard](https://public.tableau.com/views/Cyclistic_17285654688300/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
+<br/>
+Another version can also be found in my [Looker Studio Dashboard](https://lookerstudio.google.com/s/vjkK170-95w).
+<br/>
+...and another in my [Power BI Dashboard](https://app.powerbi.com/links/QeooPDKKA7?ctid=48ef51c9-8211-4b4f-8986-7b185d527f71&pbi_source=linkShare).
+
+<br/>
+
 **Proportion of Rider Type**
 
 <img width="468" alt="image" src="https://github.com/user-attachments/assets/a8bfbefc-0139-4a83-aae1-22e562641ba3">
