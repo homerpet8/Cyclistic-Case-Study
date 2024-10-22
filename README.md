@@ -16,18 +16,18 @@ In order to do that, the team needs to better understand how annual members and 
 
 **SCENARIO**
 
-You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
+You are a junior data analyst working in the marketing analyst team at Cyclistic. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
 **EXCUTIVE SUMMARY**
 
 This case study is a capstone project for the Google Data Analytics Professional Certification. It follows the six phases of the data analysis process: ASK, PREPARE, PROCESS, ANALYZE, SHARE, and ACT.
 
-In this case study, we seek to understand the behavioral differences between two user groups of Cyclistic Bikeshare: the casual riders and the annual members. Our task is to examine the historical bike trip data of Cyclistic, and to analyze usage patterns, behaviors, and preferences of the two customer groups. We apply data science techniques including data cleaning and wrangling, exploratory data analysis, and visualization, using R, to reveal patterns and insights.
+In this case study, we seek to understand the behavioral differences between the two user groups of Cyclistic Bikeshare: the casual riders and the annual members. Our task is to examine the historical bike trip data of Cyclistic, and to analyze usage patterns, behaviors, and preferences of the two customer groups. We apply data science techniques using SQL (BigQuery) to perform data cleaning, wrangling, and exploratory data analysis; and Tableau, to reveal patterns and insights.
 
 The business goal of Cyclistic is to maximize the number of annual memberships. As annual members have been identified as more profitable to the company, converting casual riders into annual members is key to the company’s future growth. The company’s Marketing Director, Lily Moreno, has set a clear business objective: design marketing strategies aimed at converting casual riders into
 annual members.
 
-Our study is aimed at providing data-driven insights to tailor strategies that resonate with casual riders, addressing their needs and preferences, and ultimately, encouraging them to become annual members. We believe that understanding these riders' behavior could be instrumental in crafting an effective marketing strategy.
+Our study is aimed at providing data-driven insights to tailor strategies that resonate with casual riders, addressing their needs and preferences, and ultimately, encouraging them to become annual members. We believe that understanding the riders' behavior could be instrumental in crafting an effective marketing strategy.
 
 Our hope is that our work will play a vital role in shaping Cyclistic's future marketing strategies and contribute to its mission of inclusive, accessible, and profitable bike-sharing.
 
@@ -51,9 +51,9 @@ To analyze Cyclistic's historical bike trip data and understand how casual rider
 
 **KEY SATEKEHOLDERS**
 
-- Lily Moreno: The director of marketing who is responsible for developing campaigns and initiatives to promote the bike-sharing program.
+- Lily Moreno: The director of marketing responsible for developing campaigns and initiatives to promote the bike-sharing program.
 - Cyclistic Marketing Analytics Team: A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
-- Cyclistic's Executive Team: The notoriously detail-oriented executive team who will decide whether to approve the recommended marketing program.  
+- Cyclistic's Executive Team: The detail-oriented executive team who will decide whether to approve the recommended marketing program.  
 
 **ASSUMPTIONS**
 
@@ -69,7 +69,7 @@ Our data, sourced from Cyclistic's historical trip records, covers a three-month
 
 **DATA LOCATION AND ORGANIZATION**
 
-The data used for this case study has been made available by Motivate International Inc. It represents the historical trip data of Cyclistic bikes. It is a public data that is available for download and use to explore how different customer types are using Cyclistic bikes. The data is in a structured format like a CSV file, with each row representing a bike trip and columns indicating bike type, start time, end time, start station, end station, and user type.
+Cyclistic is a fictional company. The data used for this case study has been made available by Motivate International Inc. It represents the historical trip data of Divvy bicycle sharing service in Chicago. It is a public data that is available for download and use to explore how different customer types are using Cyclistic bikes. The data is in a structured format like a CSV file, with each row representing a bike trip and columns indicating bike type, start time, end time, start station, end station, and user type.
 
 **DATA CREDIBILITY AND BIAS**
 
@@ -93,7 +93,8 @@ Potential problems could include missing data, errors in the data, or bias in th
 
 **KEY TASKS:**
 
-- Download data and store it appropriately.
+- Download the data and store it appropriately.
+- Load the data to BigQuery.
 - Identify how it’s organized.
 - Sort and filter the data.
 - Determine the credibility of the data.  
@@ -101,7 +102,7 @@ Potential problems could include missing data, errors in the data, or bias in th
 <br/>
 
 ```SQL
---combining the monthly tables to one quarter table
+--Combining the monthly tables to one quarter table
 
 CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
   SELECT * FROM `fluted-expanse-414509.Cyclistic.202301-divvy-tripdata`
@@ -111,6 +112,8 @@ CREATE TABLE fluted-expanse-414509.Cyclistic.divvy_trips_2023_q1 AS (
   SELECT * FROM `fluted-expanse-414509.Cyclistic.202303-divvy-tripdata`
   );
 ```
+This query creates a table of 13 columns and 639,424 rows, containing the tripdata
+for the first quarter of 2023.
 
 <br/>
 
